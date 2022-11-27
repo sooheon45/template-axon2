@@ -1,5 +1,6 @@
 
 
+
 forEach: View
 fileName: {{namePascalCase}}Repository.java
 path: {{boundedContext.name}}/{{{options.packagePath}}}/query
@@ -8,8 +9,12 @@ mergeType: template
 package {{options.package}}.query;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.rest.core.annotation.RepositoryRestResource;
+import org.springframework.data.rest.core.annotation.RestResource;
+
 import java.util.List;
 
+@RepositoryRestResource(path = "{{namePlural}}", collectionResourceRel = "{{namePlural}}")
 public interface {{namePascalCase}}Repository extends JpaRepository<{{namePascalCase}}, Long> {
 
     {{#setFindBy updateRules namePascalCase}}{{/setFindBy}}

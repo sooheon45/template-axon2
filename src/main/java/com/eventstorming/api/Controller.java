@@ -1,6 +1,7 @@
 
 
 
+
 forEach: Aggregate
 fileName: {{namePascalCase}}Controller.java
 path: {{boundedContext.name}}/{{{options.packagePath}}}/api
@@ -63,7 +64,7 @@ public class {{ namePascalCase }}Controller {
                   
                   EntityModel<{{ ../namePascalCase }}Aggregate> model = EntityModel.of(resource);
                   model
-                        .add(Link.of("/{{ ../../namePlural }}/" + resource.getId()).withSelfRel());
+                        .add(Link.of("/{{ ../namePlural }}/" + resource.getId()).withSelfRel());
 
                   return new ResponseEntity<>(model, HttpStatus.OK);
             }

@@ -1,5 +1,6 @@
 
 
+
 forEach: View
 representativeFor: View
 fileName: JPA{{namePascalCase}}QueryHandler.java
