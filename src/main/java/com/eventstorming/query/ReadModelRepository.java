@@ -51,7 +51,7 @@ public interface {{namePascalCase}}Repository extends JpaRepository<{{namePascal
 
 <function>
 
-this.contexts.keyFieldClass = "String";
+this.contexts.keyFieldClass = "Long";
 var me = this;
 this.fieldDescriptors.forEach(fd => {if(fd.isKey) me.contexts.keyFieldClass=fd.className});
 
