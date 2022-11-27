@@ -1,6 +1,3 @@
-
-
-
 forEach: Aggregate
 fileName: {{namePascalCase}}Aggregate.java
 path: {{boundedContext.name}}/{{{options.packagePath}}}/aggregate
@@ -53,7 +50,10 @@ public class {{namePascalCase}}Aggregate {
         BeanUtils.copyProperties(command, event);     
 
         {{#if (isRepositoryPost ../this)}}
-        event.setId(createUUID());
+        //<<< Etc / ID Generation
+        //Please uncomment here and implement the createUUID method.
+        //event.setId(createUUID());
+        //>>> Etc / ID Generation
         {{/if}}
 
         apply(event);

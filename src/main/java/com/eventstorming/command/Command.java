@@ -1,3 +1,4 @@
+
 forEach: Command
 fileName: {{namePascalCase}}Command.java
 path: {{boundedContext.name}}/{{{options.packagePath}}}/command
@@ -18,7 +19,11 @@ public class {{namePascalCase}}Command {
     {{#if (isRepositoryPost this)}}
 
     {{#aggregate.aggregateRoot.fieldDescriptors}}
-    {{^isKey}}
+    {{#isKey}}    
+    //<<< Etc / ID Generation
+    private {{className}} {{nameCamelCase}};  // Please comment here if you want user to enter the id directly
+    //>>> Etc / ID Generation
+    {{else}}
     private {{className}} {{nameCamelCase}};
     {{/isKey}}
     {{/aggregate.aggregateRoot.fieldDescriptors}}
