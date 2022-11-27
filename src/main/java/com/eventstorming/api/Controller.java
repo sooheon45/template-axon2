@@ -1,5 +1,6 @@
 
 
+
 forEach: Aggregate
 fileName: {{namePascalCase}}Controller.java
 path: {{boundedContext.name}}/{{{options.packagePath}}}/api
@@ -16,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.http.HttpStatus;
 
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.Link;
@@ -55,10 +58,10 @@ public class {{ namePascalCase }}Controller {
       return commandGateway.send({{nameCamelCase}}Command)            
             .thenApply(
             id -> {
-                  {{ ../../namePascalCase }} resource = new {{ ../../namePascalCase }}();
+                  {{ ../namePascalCase }}Aggregate resource = new {{ ../namePascalCase }}Aggregate();
                   resource.setId(id);
                   
-                  EntityModel<{{ ../../namePascalCase }}> model = EntityModel.of(resource);
+                  EntityModel<{{ ../namePascalCase }}Aggregate> model = EntityModel.of(resource);
                   model
                         .add(Link.of("/{{ ../../namePlural }}/" + resource.getId()).withSelfRel());
 
