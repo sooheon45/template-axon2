@@ -3,6 +3,7 @@
 
 
 
+
 forEach: Aggregate
 fileName: {{namePascalCase}}Controller.java
 path: {{boundedContext.name}}/{{{options.packagePath}}}/api
@@ -75,7 +76,7 @@ public class {{ namePascalCase }}Controller {
         {{/isRestRepository}}
 
         {{^isRestRepository}}
-  @RequestMapping(value = "/{{controllerInfo.apiPath}}",
+  @RequestMapping(value = "/{{ aggregate.namePlural }}/{{controllerInfo.apiPath}}",
         method = RequestMethod.{{controllerInfo.method}},
         produces = "application/json;charset=UTF-8")
   public CompletableFuture {{nameCamelCase}}(@RequestBody {{namePascalCase}}Command {{nameCamelCase}}Command)
