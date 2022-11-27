@@ -1,3 +1,4 @@
+
 forEach: Aggregate
 fileName: {{namePascalCase}}Controller.java
 path: {{boundedContext.name}}/{{{options.packagePath}}}/api
@@ -98,7 +99,7 @@ public class {{ namePascalCase }}Controller {
       ArrayList resources = new ArrayList<{{namePascalCase}}Aggregate>(); 
       eventStore.readEvents(id).asStream().forEach(resources::add);
 
-      CollectionModel<VacationAggregate> model = CollectionModel.of(resources);
+      CollectionModel<{{ namePascalCase }}Aggregate> model = CollectionModel.of(resources);
                 
       return new ResponseEntity<>(model, HttpStatus.OK);
   } 
