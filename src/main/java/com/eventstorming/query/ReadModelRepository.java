@@ -3,6 +3,7 @@
 
 
 
+
 forEach: View
 fileName: {{namePascalCase}}Repository.java
 path: {{boundedContext.name}}/{{{options.packagePath}}}/query
@@ -21,7 +22,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 //@RepositoryRestResource(path = "{{namePlural}}", collectionResourceRel = "{{namePlural}}")
-public interface {{namePascalCase}}Repository extends JpaRepository<{{namePascalCase}}, Long> {
+public interface {{namePascalCase}}Repository extends JpaRepository<{{namePascalCase}}, {{contexts.keyFieldClass}}> {
 
 //<<< API / HATEOAS
 /*
@@ -49,6 +50,11 @@ public interface {{namePascalCase}}Repository extends JpaRepository<{{namePascal
 }
 
 <function>
+
+this.contexts.keyFieldClass = "String";
+var me = this;
+this.fieldDescriptors.forEach(fd => {if(fd.isKey) me.contexts.keyFieldClass=fd.className});
+
 window.$HandleBars.registerHelper('setFindBy', function (updateRules, name) {
     var text = "";
     try {
