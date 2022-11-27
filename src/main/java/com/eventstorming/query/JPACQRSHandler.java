@@ -1,6 +1,7 @@
 
 
 
+
 forEach: View
 representativeFor: View
 fileName: JPA{{namePascalCase}}QueryHandler.java
@@ -30,7 +31,7 @@ import java.io.IOException;
 @ProcessingGroup("{{nameCamelCase}}")
 public class JPA{{namePascalCase}}QueryHandler {
 
-//<<< DDD / CQRS
+//<<< EDA / CQRS
     @Autowired
     private {{namePascalCase}}Repository {{nameCamelCase}}Repository;
 
@@ -115,7 +116,7 @@ public class JPA{{namePascalCase}}QueryHandler {
     }
     {{/deleteRules}}
 
-//>>> DDD / CQRS
+//>>> EDA / CQRS
 }
 
 
