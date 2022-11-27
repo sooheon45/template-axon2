@@ -1,7 +1,3 @@
-
-
-
-
 forEach: View
 fileName: {{namePascalCase}}QueryController.java
 path: {{boundedContext.name}}/{{{options.packagePath}}}/api
@@ -16,7 +12,10 @@ import org.axonframework.queryhandling.QueryGateway;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.hateoas.CollectionModel;
+import org.springframework.hateoas.EntityModel;
+import org.springframework.hateoas.Link;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
@@ -42,6 +41,30 @@ public class {{namePascalCase}}QueryController {
             });
 
   }
+
+  @GetMapping("/orders/{id}")
+  public CompletableFuture findById(@PathVariable("id") Long id) {
+    {{namePascalCase}}SingleQuery query = new {{namePascalCase}}SingleQuery();
+    query.setId(id);
+
+      return queryGateway.query(query, ResponseTypes.optionalInstanceOf({{namePascalCase}}.class))
+              .thenApply(resource -> {
+                if(!resource.isPresent()){
+                  return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+                }
+
+                EntityModel<{{namePascalCase}}> model = EntityModel.of(resource.get());
+                model
+                      .add(Link.of("/{{namePlural}}/" + resource.get().getId()).withSelfRel());
+              
+                return new ResponseEntity<>(model, HttpStatus.OK);
+            }).exceptionally(ex ->{
+              throw new RuntimeException(ex);
+            });
+
+  }
+
+
 
 }
 
