@@ -69,10 +69,12 @@ path: {{name}}/.
 			<artifactId>spring-boot-starter-hateoas</artifactId>
 		</dependency>
 
-		<dependency>
+//<<< API / HATEOAS
+		<!-- <dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-rest</artifactId>
-		</dependency>
+		</dependency> -->
+//>>> API / HATEOAS
 
 
 <!-- 

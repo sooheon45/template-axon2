@@ -11,14 +11,20 @@ mergeType: template
 package {{options.package}}.query;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.rest.core.annotation.RestResource;
-import org.springframework.data.rest.core.annotation.RepositoryRestResource;
+
+//<<< API / HATEOAS
+// import org.springframework.data.rest.core.annotation.RestResource;
+// import org.springframework.data.rest.core.annotation.RepositoryRestResource;
+//>>> API / HATEOAS
+
 
 import java.util.List;
 
-@RepositoryRestResource(path = "{{namePlural}}_", collectionResourceRel = "{{namePlural}}_")
+//@RepositoryRestResource(path = "{{namePlural}}", collectionResourceRel = "{{namePlural}}")
 public interface {{namePascalCase}}Repository extends JpaRepository<{{namePascalCase}}, Long> {
 
+//<<< API / HATEOAS
+/*
     @Override
     @RestResource(exported = false)
     void delete(OrderStatus entity);
@@ -34,7 +40,8 @@ public interface {{namePascalCase}}Repository extends JpaRepository<{{namePascal
     @Override
     @RestResource(exported = false)
      <S extends OrderStatus> S save(S entity);
-
+*/
+//>>> API / HATEOAS
 
     {{#setFindBy updateRules namePascalCase}}{{/setFindBy}}
 
