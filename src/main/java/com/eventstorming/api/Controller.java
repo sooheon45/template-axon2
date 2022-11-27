@@ -2,6 +2,7 @@
 
 
 
+
 forEach: Aggregate
 fileName: {{namePascalCase}}Controller.java
 path: {{boundedContext.name}}/{{{options.packagePath}}}/api
@@ -9,10 +10,8 @@ path: {{boundedContext.name}}/{{{options.packagePath}}}/api
 package {{options.package}}.api;
 
 import org.axonframework.commandhandling.gateway.CommandGateway;
-import org.axonframework.messaging.responsetypes.ResponseTypes;
 import org.axonframework.queryhandling.QueryGateway;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -21,13 +20,13 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.HttpStatus;
 
+import org.springframework.beans.BeanUtils;
+
+
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.Link;
 import org.springframework.http.HttpEntity;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
 
@@ -49,8 +48,8 @@ public class {{ namePascalCase }}Controller {
 
         {{#isRestRepository}}
   @RequestMapping(value = "/{{ aggregate.namePlural }}",
-        method = RequestMethod.{{restRepositoryInfo.method}},
-        produces = "application/json;charset=UTF-8")
+        method = RequestMethod.{{restRepositoryInfo.method}}
+      )
   public CompletableFuture {{nameCamelCase}}(@RequestBody {{namePascalCase}}Command {{nameCamelCase}}Command)
         throws Exception {
       System.out.println("##### /{{aggregate.nameCamelCase}}/{{nameCamelCase}}  called #####");
@@ -60,6 +59,8 @@ public class {{ namePascalCase }}Controller {
             .thenApply(
             id -> {
                   {{ ../namePascalCase }}Aggregate resource = new {{ ../namePascalCase }}Aggregate();
+                  BeanUtils.copyProperties({{nameCamelCase}}Command, resource);
+
                   resource.setId(id);
                   
                   EntityModel<{{ ../namePascalCase }}Aggregate> model = EntityModel.of(resource);

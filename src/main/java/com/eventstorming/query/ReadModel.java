@@ -1,11 +1,14 @@
 
 
+
 forEach: View
 representativeFor: View
 fileName: {{namePascalCase}}.java
 path: {{boundedContext.name}}/{{{options.packagePath}}}/query
 ---
 package {{options.package}}.query;
+
+import org.springframework.hateoas.server.core.Relation;
 
 import javax.persistence.*;
 import java.util.List;
@@ -17,6 +20,7 @@ import lombok.Data;
 @Entity
 @Table(name="{{namePascalCase}}_table")
 @Data
+@Relation(collectionRelation = "{{namePlural}}")
 public class {{namePascalCase}} {
 
 {{#fieldDescriptors}}
