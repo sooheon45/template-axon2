@@ -5,6 +5,7 @@
 
 
 
+
 forEach: Aggregate
 fileName: {{namePascalCase}}Controller.java
 path: {{boundedContext.name}}/{{{options.packagePath}}}/api
@@ -63,11 +64,11 @@ public class {{ namePascalCase }}Controller {
                   {{ ../namePascalCase }}Aggregate resource = new {{ ../namePascalCase }}Aggregate();
                   BeanUtils.copyProperties({{nameCamelCase}}Command, resource);
 
-                  resource.setId(id);
+                  resource.set{{aggregate.aggregateRoot.keyFieldDescriptor.namePascalCase}}(({{aggregate.aggregateRoot.keyFieldDescriptor.className}})id);
                   
                   EntityModel<{{ ../namePascalCase }}Aggregate> model = EntityModel.of(resource);
                   model
-                        .add(Link.of("/{{ ../namePlural }}/" + resource.getId()).withSelfRel());
+                        .add(Link.of("/{{ ../namePlural }}/" + resource.get{{aggregate.aggregateRoot.keyFieldDescriptor.namePascalCase}}()).withSelfRel());
 
                   return new ResponseEntity<>(model, HttpStatus.OK);
             }
