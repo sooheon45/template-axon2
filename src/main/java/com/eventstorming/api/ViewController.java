@@ -1,3 +1,4 @@
+
 forEach: View
 fileName: {{namePascalCase}}QueryController.java
 path: {{boundedContext.name}}/{{{options.packagePath}}}/api
@@ -42,7 +43,7 @@ public class {{namePascalCase}}QueryController {
 
   }
 
-  @GetMapping("/orders/{id}")
+  @GetMapping("/{{namePlural}}/{id}")
   public CompletableFuture findById(@PathVariable("id") Long id) {
     {{namePascalCase}}SingleQuery query = new {{namePascalCase}}SingleQuery();
     query.setId(id);
