@@ -1,3 +1,4 @@
+
 forEach: Aggregate
 fileName: {{namePascalCase}}Aggregate.java
 path: {{boundedContext.name}}/{{{options.packagePath}}}/aggregate
@@ -82,7 +83,7 @@ public class {{namePascalCase}}Aggregate {
     public void handle({{namePascalCase}}Command command){
         {{#triggerByCommand}}
         {{eventValue.namePascalCase}}Event event = new {{eventValue.namePascalCase}}Event();
-        BeanUtils.copyProperties(command, event);     
+        BeanUtils.copyProperties(this, event);     
         apply(event);
 
         {{#relationCommandInfo}}
@@ -112,6 +113,7 @@ public class {{namePascalCase}}Aggregate {
     @EventSourcingHandler
     public void on({{namePascalCase}}Event event) {
         BeanUtils.copyProperties(event, this);
+        
     }
 
     {{/events}}
@@ -128,6 +130,11 @@ window.$HandleBars.registerHelper('checkDateType', function (fieldDescriptors) {
             return "import java.util.Date; \n"
         }
     }
+});
+
+window.$HandleBars.registerHelper('keys', function (data) {
+    return (Object.keys(data).join(", "));
+
 });
 
 
