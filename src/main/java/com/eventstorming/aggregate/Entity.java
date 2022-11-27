@@ -1,5 +1,6 @@
 
 
+
 forEach: Aggregate
 fileName: {{namePascalCase}}Aggregate.java
 path: {{boundedContext.name}}/{{{options.packagePath}}}/aggregate
@@ -50,6 +51,11 @@ public class {{namePascalCase}}Aggregate {
         {{#triggerByCommand}}
         {{eventValue.namePascalCase}}Event event = new {{eventValue.namePascalCase}}Event();
         BeanUtils.copyProperties(command, event);     
+
+        {{#if (isRepositoryPost ../this)}}
+        event.setId(createUUID());
+        {{/if}}
+
         apply(event);
 
         {{#relationCommandInfo}}
