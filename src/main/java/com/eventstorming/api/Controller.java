@@ -4,6 +4,7 @@
 
 
 
+
 forEach: Aggregate
 fileName: {{namePascalCase}}Controller.java
 path: {{boundedContext.name}}/{{{options.packagePath}}}/api
@@ -76,13 +77,13 @@ public class {{ namePascalCase }}Controller {
         {{/isRestRepository}}
 
         {{^isRestRepository}}
-  @RequestMapping(value = "/{{ aggregate.namePlural }}/{{controllerInfo.apiPath}}",
+  @RequestMapping(value = "/{{ aggregate.namePlural }}/{id}/{{controllerInfo.apiPath}}",
         method = RequestMethod.{{controllerInfo.method}},
         produces = "application/json;charset=UTF-8")
-  public CompletableFuture {{nameCamelCase}}(@RequestBody {{namePascalCase}}Command {{nameCamelCase}}Command)
+  public CompletableFuture {{nameCamelCase}}(@PathVariable("id") {{aggregate.aggregateRoot.keyFieldDescriptor.className}} id, @RequestBody {{namePascalCase}}Command {{nameCamelCase}}Command)
         throws Exception {
       System.out.println("##### /{{aggregate.nameCamelCase}}/{{nameCamelCase}}  called #####");
-
+      {{nameCamelCase}}Command.set{{aggregate.aggregateRoot.keyFieldDescriptor.namePascalCase}}(id);
       // send command
       return commandGateway.send({{nameCamelCase}}Command);
   }
