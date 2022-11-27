@@ -1,5 +1,3 @@
-
-
 forEach: Command
 fileName: {{namePascalCase}}Command.java
 path: {{boundedContext.name}}/{{{options.packagePath}}}/command
@@ -17,6 +15,16 @@ import lombok.ToString;
 @Data
 public class {{namePascalCase}}Command {
 
+    {{#if (isRepositoryPost this)}}
+
+    {{#aggregate.aggregateRoot.fieldDescriptors}}
+    {{^isKey}}
+    private {{className}} {{nameCamelCase}};
+    {{/isKey}}
+    {{/aggregate.aggregateRoot.fieldDescriptors}}
+
+    {{else}}
+
     {{#aggregate.aggregateRoot.fieldDescriptors}}
     {{#isKey}}
     @TargetAggregateIdentifier
@@ -24,4 +32,5 @@ public class {{namePascalCase}}Command {
     private {{className}} {{nameCamelCase}};
     {{/aggregate.aggregateRoot.fieldDescriptors}}
 
+    {{/if}}
 }
