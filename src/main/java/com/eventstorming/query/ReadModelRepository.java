@@ -1,9 +1,3 @@
-
-
-
-
-
-
 forEach: View
 fileName: {{namePascalCase}}Repository.java
 path: {{boundedContext.name}}/{{{options.packagePath}}}/query

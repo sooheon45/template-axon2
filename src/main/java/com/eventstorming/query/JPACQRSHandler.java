@@ -2,6 +2,7 @@
 
 
 
+
 forEach: View
 representativeFor: View
 fileName: JPA{{namePascalCase}}QueryHandler.java
@@ -38,6 +39,11 @@ public class JPA{{namePascalCase}}QueryHandler {
     @QueryHandler
     public List<{{namePascalCase}}> handle({{namePascalCase}}Query query) {
         return {{nameCamelCase}}Repository.findAll();
+    }
+
+    @QueryHandler
+    public Optional<{{namePascalCase}}> handle({{namePascalCase}}SingleQuery query) {
+        return {{nameCamelCase}}Repository.findById(query.get{{contexts.keyField}}());
     }
 
     {{#createRules}}
@@ -121,6 +127,12 @@ public class JPA{{namePascalCase}}QueryHandler {
 
 
 <function>
+
+this.contexts.keyField = "Long";
+var me = this;
+this.fieldDescriptors.forEach(fd => {if(fd.isKey) me.contexts.keyField=fd.namePascalCase});
+
+
 window.$HandleBars.registerHelper('isOperator', function (value) {
         return value == '=';
         });
