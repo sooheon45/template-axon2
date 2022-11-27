@@ -1,4 +1,5 @@
 
+
 forEach: View
 fileName: {{namePascalCase}}QueryController.java
 path: {{boundedContext.name}}/{{{options.packagePath}}}/api
@@ -44,9 +45,9 @@ public class {{namePascalCase}}QueryController {
   }
 
   @GetMapping("/{{namePlural}}/{id}")
-  public CompletableFuture findById(@PathVariable("id") Long id) {
+  public CompletableFuture findById(@PathVariable("id") {{contexts.keyFieldClass}} id) {
     {{namePascalCase}}SingleQuery query = new {{namePascalCase}}SingleQuery();
-    query.setId(id);
+    query.set{{contexts.keyField}}(id);
 
       return queryGateway.query(query, ResponseTypes.optionalInstanceOf({{namePascalCase}}.class))
               .thenApply(resource -> {
@@ -56,7 +57,7 @@ public class {{namePascalCase}}QueryController {
 
                 EntityModel<{{namePascalCase}}> model = EntityModel.of(resource.get());
                 model
-                      .add(Link.of("/{{namePlural}}/" + resource.get().getId()).withSelfRel());
+                      .add(Link.of("/{{namePlural}}/" + resource.get().get{{contexts.keyField}}()).withSelfRel());
               
                 return new ResponseEntity<>(model, HttpStatus.OK);
             }).exceptionally(ex ->{
@@ -69,3 +70,13 @@ public class {{namePascalCase}}QueryController {
 
 }
 
+<function>
+this.contexts.keyField = "Long";
+this.contexts.keyFieldClass = "String";
+var me = this;
+this.fieldDescriptors.forEach(fd => {if(fd.isKey) {
+  me.contexts.keyField=fd.namePascalCase;
+  me.contexts.keyFieldClass=fd.className;
+}
+});
+</function>
