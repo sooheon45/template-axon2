@@ -1,4 +1,5 @@
 
+
 forEach: Command
 fileName: {{namePascalCase}}Command.java
 path: {{boundedContext.name}}/{{{options.packagePath}}}/command
@@ -33,9 +34,17 @@ public class {{namePascalCase}}Command {
     {{#aggregate.aggregateRoot.fieldDescriptors}}
     {{#isKey}}
     @TargetAggregateIdentifier
-    {{/isKey}}
     private {{className}} {{nameCamelCase}};
+    {{/isKey}}
     {{/aggregate.aggregateRoot.fieldDescriptors}}
+
+    {{#fieldDescriptors}}
+        {{#isKey}}
+            @Id
+            //@GeneratedValue(strategy=GenerationType.AUTO)
+        {{/isKey}}
+        private {{className}} {{nameCamelCase}};
+    {{/fieldDescriptors}}
 
     {{/if}}
 }
