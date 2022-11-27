@@ -6,6 +6,7 @@
 
 
 
+
 forEach: Aggregate
 fileName: {{namePascalCase}}Controller.java
 path: {{boundedContext.name}}/{{{options.packagePath}}}/api
@@ -22,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.HttpStatus;
+import org.axonframework.eventsourcing.eventstore.EventStore;
 
 import org.springframework.beans.BeanUtils;
 
@@ -90,5 +92,18 @@ public class {{ namePascalCase }}Controller {
   }
         {{/isRestRepository}}
         {{/commands}}
+
+
+  @Autowired
+  EventStore eventStore;
+
+  @GetMapping(value="/{{ namePlural }}/{id}/events")
+  public String getEvents(@PathVariable("id") {{aggregateRoot.keyFieldDescriptor.className}} id){
+      eventStore.readEvents(id).asStream().forEach(System.out::println);
+
+      return "ok";
+            
+  }
+
 }
 //>>> Clean Arch / Inbound Adaptor
