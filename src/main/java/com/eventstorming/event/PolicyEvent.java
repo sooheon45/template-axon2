@@ -1,5 +1,6 @@
 
 
+
 forEach: RelationEventInfo
 fileName: {{eventValue.namePascalCase}}Event.java
 path: {{boundedContext.name}}/{{{options.packagePath}}}/event
@@ -17,7 +18,7 @@ import lombok.*;
 public class {{eventValue.namePascalCase}}Event {
 
 {{#eventValue.fieldDescriptors}}
-    private {{safeTypeOf className}} {{nameCamelCase}};
+    private {{className}} {{nameCamelCase}};
 {{/eventValue.fieldDescriptors}}
 }
 
@@ -29,8 +30,6 @@ public class {{eventValue.namePascalCase}}Event {
         } else {
             return "Object";
         }
-    
-        
     })
 
 
