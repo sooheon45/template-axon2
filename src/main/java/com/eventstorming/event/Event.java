@@ -1,5 +1,6 @@
 
 
+
 forEach: Event
 fileName: {{namePascalCase}}Event.java
 path: {{boundedContext.name}}/{{{options.packagePath}}}/event
@@ -34,4 +35,12 @@ window.$HandleBars.registerHelper('checkDateType', function (fieldDescriptors) {
         }
         }
         });
+
+window.$HandleBars.registerHelper('checkBigDecimal', function (fieldDescriptors) {
+    for(var i = 0; i < fieldDescriptors.length; i ++ ){
+        if(fieldDescriptors[i] && fieldDescriptors[i].className.includes('BigDecimal')){
+            return "import java.math.BigDecimal;";
+        }
+    }
+});
 </function>
