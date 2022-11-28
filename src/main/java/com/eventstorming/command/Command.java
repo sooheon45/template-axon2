@@ -48,3 +48,21 @@ public class {{namePascalCase}}Command {
 
     {{/if}}
 }
+
+
+window.$HandleBars.registerHelper('checkDateType', function (fieldDescriptors) {
+
+    for(var i = 0; i < fieldDescriptors.length; i ++ ){
+        if(fieldDescriptors[i] && fieldDescriptors[i].className == 'Date'){
+            return "import java.util.Date; \n"
+        }
+    }
+});
+
+window.$HandleBars.registerHelper('checkBigDecimal', function (fieldDescriptors) {
+    for(var i = 0; i < fieldDescriptors.length; i ++ ){
+        if(fieldDescriptors[i] && fieldDescriptors[i].className.includes('BigDecimal')){
+            return "import java.math.BigDecimal;";
+        }
+    }
+});
