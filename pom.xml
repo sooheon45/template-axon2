@@ -1,7 +1,3 @@
-
-
-
-
 forEach: BoundedContext
 fileName: pom.xml
 path: {{name}}/.
@@ -20,7 +16,7 @@ path: {{name}}/.
 	<artifactId>{{name}}</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>{{name}}</name>
-	<description>An Axon Framework Sample Application</description>
+	<description>An Axon Framework Sample Application.</description>
 	<properties>
 		<java.version>11</java.version>
 		<axon.version>4.6.0</axon.version>
