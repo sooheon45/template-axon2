@@ -1,6 +1,7 @@
 
 
 
+
 forEach: RelationEventInfo
 fileName: {{eventValue.namePascalCase}}Event.java
 path: {{boundedContext.name}}/{{{options.packagePath}}}/event
@@ -21,16 +22,3 @@ public class {{eventValue.namePascalCase}}Event {
     private {{className}} {{nameCamelCase}};
 {{/eventValue.fieldDescriptors}}
 }
-
-<function>
-    window.$HandleBars.registerHelper('safeTypeOf', function (className) {
-        if(className.endsWith("String") || className.endsWith("Integer") || className.endsWith("Long") || className.endsWith("Double") || className.endsWith("Float")
-            || className.endsWith("Boolean") || className.endsWith("Date")){
-            return className;
-        } else {
-            return "Object";
-        }
-    })
-
-
-</function>
