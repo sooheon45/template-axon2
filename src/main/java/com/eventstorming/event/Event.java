@@ -28,10 +28,12 @@ public class {{namePascalCase}}Event {
 <function>
 window.$HandleBars.registerHelper('checkDateType', function (fieldDescriptors) {
 
-        for(var i = 0; i < fieldDescriptors.length; i ++ ){
-        if(fieldDescriptors[i] && fieldDescriptors[i].className == 'Date'){
-        return "import java.util.Date; \n"
-        }
+        if(fieldDescriptors){
+            for(var i = 0; i < fieldDescriptors.length; i ++ ){
+                if(fieldDescriptors[i] && fieldDescriptors[i].className == 'Date'){
+                    return "import java.util.Date; \n"
+                }
+            }
         }
         });
 </function>
