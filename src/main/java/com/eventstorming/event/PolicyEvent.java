@@ -1,4 +1,5 @@
 
+
 forEach: RelationEventInfo
 fileName: {{eventValue.namePascalCase}}Event.java
 path: {{boundedContext.name}}/{{{options.packagePath}}}/event
@@ -25,14 +26,11 @@ public class {{eventValue.namePascalCase}}Event {
         if(className.endsWith("String") || className.endsWith("Integer") || className.endsWith("Long") || className.endsWith("Double") || className.endsWith("Float")
             || className.endsWith("Boolean") || className.endsWith("Date")){
             return className;
-        }else
+        } else {
             return "Object";
-        // if(className.indexOf("List")==0){
-        //     return "java.util.List<java.util.Map>";
-        // } else{
-        //     return "java.util.Map";
-        // } 
-        //else if (enum) return "String"
+        }
+    
+        
     })
 
 
