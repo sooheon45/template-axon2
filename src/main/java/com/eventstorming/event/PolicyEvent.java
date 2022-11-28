@@ -1,3 +1,4 @@
+
 forEach: RelationEventInfo
 fileName: {{eventValue.namePascalCase}}Event.java
 path: {{boundedContext.name}}/{{{options.packagePath}}}/event
