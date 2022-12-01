@@ -26,3 +26,16 @@ or You can run the axon server with docker:
 docker run -d --name my-axon-server -p 8024:8024 -p 8124:8124 axoniq/axonserver
 ```
 
+## Build & Run each service
+
+'''
+cd common-api
+mvn install
+cd ..
+
+{{#boundedContexts}}
+cd {{name}}
+mvn spring-boot:run
+cd ..
+{{/boundedContexts}}
+'''
