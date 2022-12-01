@@ -13,7 +13,7 @@ path: {{name}}/.
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>{{options.package}}</groupId>
-	<artifactId>api</artifactId>
+	<artifactId>common-api</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>api</name>
 	<description>An Axon Framework Sample Application.</description>
@@ -56,14 +56,5 @@ path: {{name}}/.
 
 		</dependencies>
 	</dependencyManagement>
-
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
-		</plugins>
-	</build>
 
 </project>

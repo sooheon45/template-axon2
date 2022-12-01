@@ -9,6 +9,10 @@ except: {{#except fieldDescriptors}}{{/except}}
 ---
 package {{options.package}}.saga;
 
+import {{options.package}}.command;
+import {{options.package}}.event;
+
+
 import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.axonframework.config.ProcessingGroup;
 import org.axonframework.modelling.saga.EndSaga;
@@ -40,11 +44,11 @@ public class {{namePascalCase}}Saga {
         {{namePascalCase}}Command command = new {{namePascalCase}}Command();
 
         commandGateway.send(command){{#../compensateCommand}}
-            .exceptionally(ex => {
+            .exceptionally(ex -> {
 
                 {{namePascalCase}}Command {{nameCamelCase}}Command = new {{namePascalCase}}Command();
                 //
-                commandGateway.send({{nameCamelCase}}Command);
+                return commandGateway.send({{nameCamelCase}}Command);
 
             })
         
