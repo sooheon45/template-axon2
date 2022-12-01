@@ -20,24 +20,6 @@ import lombok.*;
 public class {{eventValue.namePascalCase}}Event {
 
 {{#eventValue.fieldDescriptors}}
-    private {{safeTypeOf className}} {{nameCamelCase}};
+    private {{className}} {{nameCamelCase}};
 {{/eventValue.fieldDescriptors}}
 }
-
-<function>
-    window.$HandleBars.registerHelper('safeTypeOf', function (className) {
-        if(className.endsWith("String") || className.endsWith("Integer") || className.endsWith("Long") || className.endsWith("Double") || className.endsWith("Float")
-            || className.endsWith("Boolean") || className.endsWith("Date")){
-            return className;
-        }else
-            return "Object";
-        // if(className.indexOf("List")==0){
-        //     return "java.util.List<java.util.Map>";
-        // } else{
-        //     return "java.util.Map";
-        // } 
-        //else if (enum) return "String"
-    })
-
-
-</function>
