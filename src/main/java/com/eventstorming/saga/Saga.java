@@ -9,8 +9,8 @@ except: {{#except fieldDescriptors}}{{/except}}
 ---
 package {{options.package}}.saga;
 
-import {{options.package}}.command;
-import {{options.package}}.event;
+import {{options.package}}.command.*;
+import {{options.package}}.event.*;
 
 
 import org.axonframework.commandhandling.gateway.CommandGateway;
