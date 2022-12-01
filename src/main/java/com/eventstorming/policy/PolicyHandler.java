@@ -1,4 +1,5 @@
 
+
 forEach: BoundedContext
 fileName: PolicyHandler.java
 
@@ -29,7 +30,6 @@ import {{options.package}}.aggregate.*;
 
 //<<< Clean Arch / Inbound Adaptor
 //<<< EDA / Event Handler
-
 @Service
 @ProcessingGroup("{{nameCamelCase}}")
 public class PolicyHandler{
@@ -56,5 +56,5 @@ public class PolicyHandler{
 
 
 <function>
-this.contexts.isNotSaga = this.fieldDescriptors;
+this.contexts.isNotSaga = (this.fieldDescriptors == null);
 </function>
